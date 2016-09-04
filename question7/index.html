@@ -3,8 +3,66 @@
 <head>
   <meta charset="UTF-8">
   <title>question7</title>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css" />
+  <link rel="stylesheet" href="assets/css/piano.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 <body>
-  <script src="index.js"></script>
+  <div id="piano" class="piano">
+    <div class="key white" data-key="3C"></div><!--
+    --><div class="key white" data-key="3D"></div><!--
+    --><div class="key white" data-key="3E"></div><!--
+    --><div class="key white" data-key="3F"></div><!--
+    --><div class="key white" data-key="3G"></div><!--
+    --><div class="key white" data-key="3A"></div><!--
+    --><div class="key white" data-key="3B"></div>
+    <div class="box-key-signature">
+      <div class="key black" data-key="3Cs"></div><!--
+      --><div class="key black" data-key="3Ds"></div><!--
+      --><div class="key black" data-key="3Fs"></div><!--
+      --><div class="key black empty"></div><!--
+      --><div class="key black" data-key="3Gs"></div><!--
+      --><div class="key black" data-key="3As"></div>
+    </div>
+  </div>
+  <div id="piano-strings">
+    <audio id="tone-3C" preload="auto">
+      <source src="assets/files/3C.ogg" type="audio/ogg" />
+    </audio>
+    <audio id="tone-3Cs" preload="auto">
+      <source src="assets/files/3Cs.ogg" type="audio/ogg" />
+    </audio>
+    <audio id="tone-3D" preload="auto">
+      <source src="assets/files/3D.ogg" type="audio/ogg" />
+    </audio>
+    <audio id="tone-3Ds" preload="auto">
+      <source src="assets/files/3Ds.ogg" type="audio/ogg" />
+    </audio>
+    <audio id="tone-3E" preload="auto">
+    <source src="assets/files/3E.ogg" type="audio/ogg" />
+    </audio>
+    <audio id="tone-3F" preload="auto">
+      <source src="assets/files/3F.ogg" type="audio/ogg" />
+    </audio>
+    <audio id="tone-3Fs" preload="auto">
+      <source src="assets/files/3Fs.ogg" type="audio/ogg" />
+    </audio>
+    <audio id="tone-3G" preload="auto">
+      <source src="assets/files/3G.ogg" type="audio/ogg" />
+    </audio>
+    <audio id="tone-3Gs" preload="auto">
+      <source src="assets/files/3Gs.ogg" type="audio/ogg" />
+    </audio>
+    <audio id="tone-3A" preload="auto">
+      <source src="assets/files/3A.ogg" type="audio/ogg" />
+    </audio>
+    <audio id="tone-3As" preload="auto">
+      <source src="assets/files/3As.ogg" type="audio/ogg" />
+    </audio>
+    <audio id="tone-3B" preload="auto">
+      <source src="assets/files/3B.ogg" type="audio/ogg" />
+    </audio>
+  </div>
+  <script src="assets/js/piano.js"></script>
 </body>
 </html>
