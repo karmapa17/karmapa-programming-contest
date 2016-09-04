@@ -3,6 +3,6 @@
     // your implementation
   }
 
-  repeatMyStr('@', 3);
-  repeatMyStr('#', 10);
+  console.log(repeatMyStr('@', 3));
+  console.log(repeatMyStr('#', 10));
 })();
