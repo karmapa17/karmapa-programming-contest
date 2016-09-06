@@ -16,7 +16,7 @@
       event.target.className = '';
     } else {
       moneyInput = false;
-      event.target.className = 'wrongInput';
+      event.target.className = 'invalid';
     }
   }
 
@@ -30,7 +30,7 @@
       event.target.className = '';
     } else {
       monthInput = false;
-      event.target.className = 'wrongInput';
+      event.target.className = 'invalid';
     }
   }
 
@@ -44,7 +44,7 @@
       event.target.className = '';
     } else {
       monthlyInterestInput = false;
-      event.target.className = 'wrongInput';
+      event.target.className = 'invalid';
     }
   }
 
