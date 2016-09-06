@@ -74,7 +74,7 @@
     var monthlyInterest = toNumber(inputMonthlyInterest.value) / 100;
 
     showResult(getSimpleInterest(money, month, monthlyInterest) + '元');
-  };
+  }
 
   function handleButtonCoumpoundInterestClick() {
     if (! validate()) {
@@ -85,5 +85,5 @@
     var monthlyInterest = toNumber(inputMonthlyInterest.value) / 100;
 
     showResult(getCompoundInterest(money, month, monthlyInterest) + '元');
-  };
+  }
 })();
