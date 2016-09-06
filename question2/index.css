@@ -10,10 +10,6 @@ td, th {
   padding: 8px;
 }
 
-.correctInput {
-  color: black;
-}
-
 .wrongInput {
   color: red;
 }

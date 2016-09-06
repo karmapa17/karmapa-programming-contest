@@ -13,7 +13,7 @@
     if (value / 1 || '' === value) {
       moneyValue = value / 1;
       moneyInput = true;
-      event.target.className = 'correctInput';
+      event.target.className = '';
     } else {
       moneyInput = false;
       event.target.className = 'wrongInput';
@@ -27,7 +27,7 @@
     if (value / 1 || '' === value) {
       monthValue = value / 1;
       monthInput = true;
-      event.target.className = 'correctInput';
+      event.target.className = '';
     } else {
       monthInput = false;
       event.target.className = 'wrongInput';
@@ -41,7 +41,7 @@
     if (value / 1 || '' === value) {
       monthlyInterestValue = value / 100;
       monthlyInterestInput = true;
-      event.target.className = 'correctInput';
+      event.target.className = '';
     } else {
       monthlyInterestInput = false;
       event.target.className = 'wrongInput';
