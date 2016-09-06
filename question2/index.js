@@ -5,10 +5,7 @@
   var inputMonthlyInterest = document.getElementById('monthly-interest');
   var simpleInterest = document.getElementById('button-simple-interest');
   var compoundInterest = document.getElementById('button-compound-interest');
-
-  var moneyValue = 0;
-  var monthValue = 0;
-  var monthlyInterestValue = 0;
+  var result = document.getElementById('result');
 
   inputMoney.addEventListener('input', handleMoneyInput);
   inputMonth.addEventListener('input', handleMonthInput);
@@ -31,54 +28,62 @@
     });
   }
 
+  function toNumber(str) {
+    return parseInt(str, 10) || 0;
+  }
+
+  function markInputClass(target) {
+    var value = target.value;
+    target.className = (isEmptyStr(value) || isNumericStr(value)) ? '' : 'invalid';
+  }
+
   function handleMoneyInput(event) {
-    var value = event.target.value;
-    if (isEmptyStr(value) || isNumericStr(value)) {
-      moneyValue = value / 1;
-      event.target.className = '';
-    } else {
-      event.target.className = 'invalid';
-    }
+    markInputClass(event.target);
   }
 
   function handleMonthInput(event) {
-    var value = event.target.value;
-    if (isEmptyStr(value) || isNumericStr(value)) {
-      monthValue = value / 1;
-      event.target.className = '';
-    } else {
-      event.target.className = 'invalid';
-    }
+    markInputClass(event.target);
   }
 
   function getMonthInterest(event) {
-    var value = event.target.value;
-    if (isEmptyStr(value) || isNumericStr(value)) {
-      monthlyInterestValue = value / 100;
-      event.target.className = '';
-    } else {
-      event.target.className = 'invalid';
-    }
+    markInputClass(event.target);
   }
 
-  function handleButtonSimpleInterestClick(event) {
-    if (validate()) {
-      var output = moneyValue * monthValue * monthlyInterestValue;
-      result.textContent = output + '元';
-    } else {
-      result.textContent = 'Error';
+  function getSimpleInterest(money, month, monthlyInterest) {
+    return Math.round(money * month * monthlyInterest);
+  }
+
+  function getCompoundInterest(money, month, monthlyInterest) {
+    var total = money;
+    for (var i = 0; i < month; i++) {
+      total += total * monthlyInterest
     }
+    return Math.round(total - money);
+  }
+
+  function showResult(str) {
+    result.textContent = str;
+  }
+
+  function handleButtonSimpleInterestClick() {
+    if (! validate()) {
+      return showResult('Error');
+    }
+    var money = toNumber(inputMoney.value);
+    var month = toNumber(inputMonth.value);
+    var monthlyInterest = toNumber(inputMonthlyInterest.value) / 100;
+
+    showResult(getSimpleInterest(money, month, monthlyInterest) + '元');
   };
 
-  function handleButtonCoumpoundInterestClick(event) {
-    if (validate()) {
-      var output = moneyValue;
-      for (var i = 0; i < monthValue; i++) {
-        output = output * (1 + monthlyInterestValue);
-      }
-      result.textContent = output - moneyValue + '元';
-    } else {
-      result.textContent = 'Error';
+  function handleButtonCoumpoundInterestClick() {
+    if (! validate()) {
+      return showResult('Error');
     }
+    var money = toNumber(inputMoney.value);
+    var month = toNumber(inputMonth.value);
+    var monthlyInterest = toNumber(inputMonthlyInterest.value) / 100;
+
+    showResult(getCompoundInterest(money, month, monthlyInterest) + '元');
   };
 })();
