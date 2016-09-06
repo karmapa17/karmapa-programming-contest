@@ -4,7 +4,7 @@
   var month = document.getElementById('month');
   var monthlyInterest = document.getElementById('monthlyInterest');
   var simpleInterest = document.getElementById('simpleInterest');
-  var compoundInterest = document.getElementById('compoundInterest');
+  var compoundInterest = document.getElementById('button-compound-interest');
 
   var moneyValue = 0;
   var monthValue = 0;
