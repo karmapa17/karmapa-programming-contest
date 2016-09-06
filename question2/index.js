@@ -1,4 +1,11 @@
 (function() {
+
+  var money = document.getElementById('money');
+  var month = document.getElementById('month');
+  var monthlyInterest = document.getElementById('monthlyInterest');
+  var simpleInterest = document.getElementById('simpleInterest');
+  var compoundInterest = document.getElementById('compoundInterest');
+
   var moneyValue = 0;
   var monthValue = 0;
   var monthlyInterestValue = 0;
