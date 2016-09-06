@@ -13,13 +13,13 @@
   var monthInput = true;
   var monthlyInterestInput = true;
 
-  money.addEventListener('input', getMoney);
+  money.addEventListener('input', handleMoneyInput);
   month.addEventListener('input', getMonth);
   monthlyInterest.addEventListener('input', getMonthInterest);
   simpleInterest.addEventListener('click', countSimpleInterest);
   compoundInterest.addEventListener('click', countCompoundInterest);
 
-  function getMoney(event) {
+  function handleMoneyInput(event) {
     var value = event.target.value;
     if (value / 1 || '' === value) {
       moneyValue = value / 1;
