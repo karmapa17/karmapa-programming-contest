@@ -17,7 +17,7 @@
   month.addEventListener('input', handleMonthInput);
   monthlyInterest.addEventListener('input', getMonthInterest);
 
-  simpleInterest.addEventListener('click', countSimpleInterest);
+  simpleInterest.addEventListener('click', handleButtonSimpleInterestClick);
   compoundInterest.addEventListener('click', countCompoundInterest);
 
   function handleMoneyInput(event) {
@@ -56,7 +56,7 @@
     }
   }
 
-  function countSimpleInterest(event) {
+  function handleButtonSimpleInterestClick(event) {
     if (true === moneyInput && monthInput && monthlyInterestInput) {
       var output = moneyValue * monthValue * monthlyInterestValue;
       result.textContent = output + '元';
