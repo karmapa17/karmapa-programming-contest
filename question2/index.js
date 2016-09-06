@@ -14,6 +14,10 @@
   var monthlyInterestInput = true;
 
   money.addEventListener('input', getMoney);
+  month.addEventListener('input', getMonth);
+  monthlyInterest.addEventListener('input', getMonthInterest);
+  simpleInterest.addEventListener('click', countSimpleInterest);
+  compoundInterest.addEventListener('click', countCompoundInterest);
 
   function getMoney(event) {
     var value = event.target.value;
@@ -27,8 +31,6 @@
     }
   }
 
-  month.addEventListener('input', getMonth);
-
   function getMonth(event) {
     var value = event.target.value;
     if (value / 1 || '' === value) {
@@ -40,8 +42,6 @@
       event.target.className = 'invalid';
     }
   }
-
-  monthlyInterest.addEventListener('input', getMonthInterest);
 
   function getMonthInterest(event) {
     var value = event.target.value;
@@ -55,8 +55,6 @@
     }
   }
 
-  simpleInterest.addEventListener('click', countSimpleInterest);
-
   function countSimpleInterest(event) {
     if (true === moneyInput && monthInput && monthlyInterestInput) {
       var output = moneyValue * monthValue * monthlyInterestValue;
@@ -65,8 +63,6 @@
       result.textContent = 'Error';
     }
   };
-
-  compoundInterest.addEventListener('click', countCompoundInterest);
 
   function countCompoundInterest(event) {
     if (true === moneyInput && monthInput && monthlyInterestInput) {
