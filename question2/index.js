@@ -20,9 +20,17 @@
   simpleInterest.addEventListener('click', handleButtonSimpleInterestClick);
   compoundInterest.addEventListener('click', handleButtonCoumpoundInterestClick);
 
+  function isEmptyStr(str) {
+    return '' === str;
+  }
+
+  function isNumericStr(str) {
+    return /^\d+$/.test(str);
+  }
+
   function handleMoneyInput(event) {
     var value = event.target.value;
-    if (value / 1 || '' === value) {
+    if (isEmptyStr(value) || isNumericStr(value)) {
       moneyValue = value / 1;
       moneyInput = true;
       event.target.className = '';
@@ -34,7 +42,7 @@
 
   function handleMonthInput(event) {
     var value = event.target.value;
-    if (value / 1 || '' === value) {
+    if (isEmptyStr(value) || isNumericStr(value)) {
       monthValue = value / 1;
       monthInput = true;
       event.target.className = '';
@@ -46,7 +54,7 @@
 
   function getMonthInterest(event) {
     var value = event.target.value;
-    if (value / 1 || '' === value) {
+    if (isEmptyStr(value) || isNumericStr(value)) {
       monthlyInterestValue = value / 100;
       monthlyInterestInput = true;
       event.target.className = '';
