@@ -2,7 +2,7 @@
 
   var money = document.getElementById('money');
   var month = document.getElementById('month');
-  var monthlyInterest = document.getElementById('monthlyInterest');
+  var monthlyInterest = document.getElementById('monthly-interest');
   var simpleInterest = document.getElementById('button-simple-interest');
   var compoundInterest = document.getElementById('button-compound-interest');
 
