@@ -9,9 +9,6 @@
   var moneyValue = 0;
   var monthValue = 0;
   var monthlyInterestValue = 0;
-  var moneyInput = true;
-  var monthInput = true;
-  var monthlyInterestInput = true;
 
   money.addEventListener('input', handleMoneyInput);
   month.addEventListener('input', handleMonthInput);
@@ -28,14 +25,18 @@
     return /^\d+$/.test(str);
   }
 
+  function validate() {
+    return [money, month, monthlyInterest].every(function(input) {
+      return isEmptyStr(input.value) || isNumericStr(input.value);
+    });
+  }
+
   function handleMoneyInput(event) {
     var value = event.target.value;
     if (isEmptyStr(value) || isNumericStr(value)) {
       moneyValue = value / 1;
-      moneyInput = true;
       event.target.className = '';
     } else {
-      moneyInput = false;
       event.target.className = 'invalid';
     }
   }
@@ -44,10 +45,8 @@
     var value = event.target.value;
     if (isEmptyStr(value) || isNumericStr(value)) {
       monthValue = value / 1;
-      monthInput = true;
       event.target.className = '';
     } else {
-      monthInput = false;
       event.target.className = 'invalid';
     }
   }
@@ -56,16 +55,14 @@
     var value = event.target.value;
     if (isEmptyStr(value) || isNumericStr(value)) {
       monthlyInterestValue = value / 100;
-      monthlyInterestInput = true;
       event.target.className = '';
     } else {
-      monthlyInterestInput = false;
       event.target.className = 'invalid';
     }
   }
 
   function handleButtonSimpleInterestClick(event) {
-    if (true === moneyInput && monthInput && monthlyInterestInput) {
+    if (validate()) {
       var output = moneyValue * monthValue * monthlyInterestValue;
       result.textContent = output + '元';
     } else {
@@ -74,7 +71,7 @@
   };
 
   function handleButtonCoumpoundInterestClick(event) {
-    if (true === moneyInput && monthInput && monthlyInterestInput) {
+    if (validate()) {
       var output = moneyValue;
       for (var i = 0; i < monthValue; i++) {
         output = output * (1 + monthlyInterestValue);
