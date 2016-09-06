@@ -16,6 +16,7 @@
   money.addEventListener('input', handleMoneyInput);
   month.addEventListener('input', handleMonthInput);
   monthlyInterest.addEventListener('input', getMonthInterest);
+
   simpleInterest.addEventListener('click', countSimpleInterest);
   compoundInterest.addEventListener('click', countCompoundInterest);
 
