@@ -2,9 +2,36 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="index.css"></link>
   <title>question2</title>
 </head>
 <body>
+  <div>
+    <table>
+      <tr>
+        <th>本金金額</th>
+        <th>存放月數</th>
+        <th>月利息(%)</th>
+        <th>利息計算</th>
+      </tr>
+      <tr>
+        <td>
+          <input id="money" class="correctInput" type="text" />
+        </td>
+        <td>
+          <input id="month" class="correctInput" type="text" />
+        </td>
+        <td>
+          <input id="monthlyInterest" class="correctInput" type="text" />
+        </td>
+        <td>
+          <button id="simpleInterest">單利</button>
+          <button id="compoundInterest">複利</button>
+        </td>
+      </tr>
+    </table>
+    <span id="result"></span>
+  </div>
   <script src="index.js"></script>
 </body>
 </html>
