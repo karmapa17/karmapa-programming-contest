@@ -1,6 +1,6 @@
 (function() {
 
-  var money = document.getElementById('money');
+  var inputMoney = document.getElementById('money');
   var month = document.getElementById('month');
   var monthlyInterest = document.getElementById('monthly-interest');
   var simpleInterest = document.getElementById('button-simple-interest');
@@ -10,7 +10,7 @@
   var monthValue = 0;
   var monthlyInterestValue = 0;
 
-  money.addEventListener('input', handleMoneyInput);
+  inputMoney.addEventListener('input', handleMoneyInput);
   month.addEventListener('input', handleMonthInput);
   monthlyInterest.addEventListener('input', getMonthInterest);
 
@@ -26,7 +26,7 @@
   }
 
   function validate() {
-    return [money, month, monthlyInterest].every(function(input) {
+    return [inputMoney, month, monthlyInterest].every(function(input) {
       return isEmptyStr(input.value) || isNumericStr(input.value);
     });
   }
