@@ -18,7 +18,7 @@
   monthlyInterest.addEventListener('input', getMonthInterest);
 
   simpleInterest.addEventListener('click', handleButtonSimpleInterestClick);
-  compoundInterest.addEventListener('click', countCompoundInterest);
+  compoundInterest.addEventListener('click', handleButtonCoumpoundInterestClick);
 
   function handleMoneyInput(event) {
     var value = event.target.value;
@@ -65,7 +65,7 @@
     }
   };
 
-  function countCompoundInterest(event) {
+  function handleButtonCoumpoundInterestClick(event) {
     if (true === moneyInput && monthInput && monthlyInterestInput) {
       var output = moneyValue;
       for (var i = 0; i < monthValue; i++) {
