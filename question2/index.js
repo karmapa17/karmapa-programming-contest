@@ -56,7 +56,7 @@
   function getCompoundInterest(money, month, monthlyInterest) {
     var total = money;
     for (var i = 0; i < month; i++) {
-      total += total * monthlyInterest
+      total += total * monthlyInterest;
     }
     return Math.round(total - money);
   }
