@@ -7,10 +7,11 @@
 </head>
 <body>
   <div class="container">
+
     <div id="elevator" class="elevator">
-      <div class="door"></div>
+      <div class="door" data-door></div>
       <div class="pad">
-        <div class="screen"></div>
+        <div class="screen" data-screen></div>
         <div class="row">
           <button class="btn" data-floor="13">13</button>
           <button class="btn" data-floor="14">14</button>
@@ -39,9 +40,10 @@
           <button class="btn" data-floor="1">1</button>
           <button class="btn" data-floor="2">2</button>
         </div>
-      </div>
-    </div>
-  </div>
+      </div><!-- .pad -->
+    </div><!-- .elevator -->
+  </div><!-- .container -->
+
   <script src="index.js"></script>
 </body>
 </html>
