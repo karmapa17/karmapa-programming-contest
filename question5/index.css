@@ -4,15 +4,56 @@
 }
 
 #elevator {
-  margin: 20px auto;
+  margin: 40px auto;
 }
 
 .elevator {
-  width: 104px;
+  width: 310px;
+  margin: 0 auto;
+  white-space: nowrap;
+}
+
+.elevator .door {
+  display: inline-block;
+  width: 340px;
+  border: 1px solid #000000;
+  height: 420px;
+  vertical-align: top;
+  position: relative;
+  overflow: hidden;
+}
+
+.elevator .door:before,
+.elevator .door:after {
+  transition: 2s all ease-in-out;
+  content: ' ';
+  border: 1px solid #000;
+  display: block;
+  width: 50%;
+  height: 100%;
+  position: absolute;
+}
+.elevator .door:before {
+  left: 0;
+}
+.elevator .door:after {
+  right: 0;
+}
+
+.elevator .door.opened:before {
+  left: -48%;
+}
+.elevator .door.opened:after {
+  right: -48%;
+}
+
+.elevator .pad {
+  display: inline-block;
+  vertical-align: top;
 }
 
 .elevator .screen {
-  width: 100%;
+  width: 104px;
   height: 40px;
   border: 1px solid #000000;
   margin-bottom: 4px;
