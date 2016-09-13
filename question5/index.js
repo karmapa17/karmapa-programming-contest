@@ -20,7 +20,7 @@
     this.transitionCallbacks.push(cb);
   };
 
-  TransitionHelper.prototype._handleTransitionEnd = function(cb) {
+  TransitionHelper.prototype._handleTransitionEnd = function() {
     do {
       var cb = this.transitionCallbacks.shift();
       if (cb) {
@@ -56,7 +56,11 @@
     return new Promise(function(resolve, reject) {
       elem.classList.add(CLASS_NO_TRANSITION);
       elem.classList.remove(CLASS_WALKING);
+
+      /*jshint ignore: start*/
       elem.offsetHeight;    // trigger reflow
+      /*jshint ignore: end*/
+
       elem.classList.remove(CLASS_NO_TRANSITION);
       resolve();
     });
