@@ -4,13 +4,14 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" href="index.css"></link>
   <title>question5</title>
+  <link rel="stylesheet" href="assets/css/elevator.css" />
 </head>
 <body>
   <div class="container">
 
     <div id="elevator" class="elevator">
       <div class="door-container">
-        <img class="passenger" data-passenger src="rabbit.png" alt="passenger" />
+        <img class="passenger" data-passenger alt="passenger" />
         <div class="door" data-door></div>
       </div>
       <div class="pad" data-pad>
@@ -43,10 +44,14 @@
           <button class="btn" data-floor="1">1</button>
           <button class="btn" data-floor="8">8</button>
         </div>
+        <div class="row">
+          <button class="btn" data-open-door>&lt;&gt;</button>
+          <button class="btn" data-close-door>&gt;&lt;</button>
+        </div>
       </div><!-- .pad -->
     </div><!-- .elevator -->
   </div><!-- .container -->
 
-  <script src="index.js"></script>
+  <script src="assets/js/elevator.js"></script>
 </body>
 </html>

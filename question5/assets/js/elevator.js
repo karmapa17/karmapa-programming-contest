@@ -11,6 +11,8 @@
   var MIN_DURATION = 1400;
   var MAX_DURATION = 1800;
   var DOOR_OPEN_DELAY = 500;
+  var IMAGE_PATH = 'assets/images/';
+  var IMAGES = ['rabbit.png', 'rabbit2.png', 'rabbit3.png', 'rabbit4.gif'];
 
   function TransitionHelper() {
     this.transitionCallbacks = [];
@@ -40,6 +42,17 @@
     TransitionHelper.call(this);
     this.elem = document.querySelector('[data-passenger]');
     this.elem.addEventListener('transitionend', this._handleTransitionEnd.bind(this), false);
+    this.imageIndex = 0;
+
+    this.randomImage();
+  };
+
+  Passenger.prototype.randomImage = function() {
+    ++this.imageIndex;
+    if (this.imageIndex > 3) {
+      this.imageIndex = 0;
+    }
+    this.elem.src = IMAGE_PATH + IMAGES[this.imageIndex];
   };
 
   Passenger.prototype.walk = function() {
@@ -52,7 +65,8 @@
   };
 
   Passenger.prototype.putBack = function() {
-    var elem = this.elem;
+    var self = this;
+    var elem = self.elem;
     return new Promise(function(resolve, reject) {
       elem.classList.add(CLASS_NO_TRANSITION);
       elem.classList.remove(CLASS_WALKING);
@@ -62,6 +76,7 @@
       /*jshint ignore: end*/
 
       elem.classList.remove(CLASS_NO_TRANSITION);
+      self.randomImage();
       resolve();
     });
   };
@@ -78,6 +93,8 @@
     this.pad = null;
     this.isMoving = false;
     this.direction = null;    // null, DIRECTION_UP, DIRECTION_DOWN
+    this.movingTimer = null;
+
     TransitionHelper.call(this);
 
     this.init(this.id);
@@ -91,6 +108,7 @@
     this.door = this.container.querySelector('[data-door]');
     this.screen = this.container.querySelector('[data-screen]');
     this.pad = this.container.querySelector('[data-pad]');
+
     this.pad.addEventListener('click', this._handlePadClick.bind(this), false);
     this.door.addEventListener('transitionend', this._handleTransitionEnd.bind(this), false);
 
@@ -151,26 +169,33 @@
     var self = this;
     var nextFloorButton = self.findNextFloor();
 
+    if (self.isDoorOpening) {
+      return;
+    }
 
     function next(nextFloor, nextFloorButton) {
       self.currentFloor = nextFloor;
       self.updateScreen();
 
       if (self.checkArrival(nextFloorButton.floor)) {
+        self.isMoving = false;
         self.arrive(self.currentFloor)
-          .then(self.move.bind(self));
+          .then(function() {
+            self.move();
+          });
       }
       else {
         self.move();
       }
     }
 
+    self.isMoving = true;
+
     if (nextFloorButton) {
 
-      self.isMoving = true;
       var duration = random(MIN_DURATION, MAX_DURATION);
 
-      setTimeout(function() {
+      self.movingTimer = setTimeout(function() {
 
         nextFloorButton = self.findNextFloor();
 
@@ -231,12 +256,16 @@
     return new Promise(function(resolve, reject) {
       this.setButtonStatus(floor, false);
       this.updateButtonClass();
+      this.isArriving = true;
       this.openDoor()
         .then(this.idle.bind(this, DOOR_OPEN_DELAY))
         .then(this.passenger.walk.bind(this.passenger))
         .then(this.closeDoor.bind(this))
         .then(this.passenger.putBack.bind(this.passenger))
-        .then(resolve);
+        .then(function() {
+          this.isArriving = false;
+          resolve();
+        }.bind(this));
     }.bind(this));
   };
 
@@ -263,7 +292,12 @@
   };
 
   Elevator.prototype._handlePadClick = function(event) {
-    var clickedFloorStr = event.target.getAttribute('data-floor');
+    var target = event.target;
+    var clickedFloorStr = target.getAttribute('data-floor');
+
+    if (target.hasAttribute('data-open-door')) {
+      return this._handleButtonOpenDoorClick();
+    }
     if (null === clickedFloorStr) {
       return;
     }
@@ -276,10 +310,47 @@
       }
 
       this.updateButtonClass();
-      if (! this.isMoving) {
+      if ((! this.isMoving) && (! this.isDoorOpening) && (! this.isArriving)) {
         this.move();
       }
     }
+  };
+
+  Elevator.prototype.clearMovingTimeout = function() {
+    clearTimeout(this.movingTimer);
+    this.movingTimer = undefined;
+  };
+
+  Elevator.prototype.clearDoorTimeout = function() {
+    clearTimeout(this.doorTimer);
+    this.doorTimer = undefined;
+  };
+
+  Elevator.prototype._handleButtonOpenDoorClick = function() {
+
+    var self = this;
+
+    if (! self.isMoving) {
+      self.clearDoorTimeout();
+      self.clearMovingTimeout();
+      self.isDoorOpening = true;
+
+      self.openDoor()
+        .then(self.idle.bind(self, 4000))
+        .then(self.closeDoor.bind(self))
+        .then(function() {
+          self.clearDoorTimeout();
+          self.clearMovingTimeout();
+          self.doorTimer = setTimeout(function() {
+            self.isDoorOpening = false;
+            self.move();
+          }, 3000);
+        });
+    }
+  };
+
+  Elevator.prototype._handleButtonCloseDoorClick = function() {
+    // TODO
   };
 
   function random(min, max) {
