@@ -1,0 +1,107 @@
+.container {
+  width: 920px;
+  margin: 0 auto;
+}
+
+#elevator {
+  margin: 40px auto;
+}
+
+.elevator {
+  width: 310px;
+  margin: 0 auto;
+  white-space: nowrap;
+}
+
+.elevator .door-container {
+  display: inline-block;
+  position: relative;
+}
+
+.elevator .door-container .passenger {
+  position: absolute;
+  display: block;
+  bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  transition: 3s all;
+}
+.elevator .door-container .passenger.walking {
+  transform: scale(1.8);
+  bottom: -160%;
+}
+
+.elevator .door {
+  display: inline-block;
+  width: 340px;
+  border: 1px solid #000000;
+  height: 472px;
+  vertical-align: top;
+  position: relative;
+  overflow: hidden;
+}
+
+.elevator .door:before,
+.elevator .door:after {
+  transition: 1s all ease-in-out;
+  content: ' ';
+  border: 1px solid #000;
+  display: block;
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  background-color: #ffffff;
+}
+.elevator .door:before {
+  left: 0;
+}
+.elevator .door:after {
+  right: 0;
+}
+
+.elevator .door.opened:before {
+  left: -48%;
+}
+.elevator .door.opened:after {
+  right: -48%;
+}
+
+.elevator .pad {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.elevator .screen {
+  width: 104px;
+  height: 40px;
+  border: 1px solid #000000;
+  margin-bottom: 4px;
+  font-size: 24px;
+  text-align: center;
+  line-height: 40px;
+}
+
+.elevator .btn {
+  outline: 0;
+  font-size: 24px;
+  width: 50px;
+  height: 50px;
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  cursor: pointer;
+}
+
+.elevator .btn.on {
+  background-color: #ffbf00;
+}
+
+.elevator .row {
+  white-space: nowrap;
+  margin-bottom: 4px;
+}
+
+.no-transition {
+  transition: none !important;
+}

@@ -4,25 +4,54 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" href="index.css"></link>
   <title>question5</title>
+  <link rel="stylesheet" href="assets/css/elevator.css" />
 </head>
 <body>
-  <div id="floorRender">1</div>
-  <div id="floor">
-    <button class="floorbtn">7</button>
-    <button class="floorbtn">14</button><br/>
-    <button class="floorbtn">6</button>
-    <button class="floorbtn">13</button><br/>
-    <button class="floorbtn">5</button>
-    <button class="floorbtn">12</button><br/>
-    <button class="floorbtn">4</button>
-    <button class="floorbtn">11</button><br/>
-    <button class="floorbtn">3</button>
-    <button class="floorbtn">10</button><br/>
-    <button class="floorbtn">2</button>
-    <button class="floorbtn">9</button><br/>
-    <button class="floorbtn">1</button>
-    <button class="floorbtn">8</button>
-  </div>
-  <script src="index.js"></script>
+  <div class="container">
+
+    <div id="elevator" class="elevator">
+      <div class="door-container">
+        <img class="passenger" data-passenger alt="passenger" />
+        <div class="door" data-door></div>
+      </div>
+      <div class="pad" data-pad>
+        <div class="screen" data-screen></div>
+        <div class="row">
+          <button class="btn" data-floor="7">7</button>
+          <button class="btn" data-floor="14">14</button>
+        </div>
+        <div class="row">
+          <button class="btn" data-floor="6">6</button>
+          <button class="btn" data-floor="13">13</button>
+        </div>
+        <div class="row">
+          <button class="btn" data-floor="5">5</button>
+          <button class="btn" data-floor="12">12</button>
+        </div>
+        <div class="row">
+          <button class="btn" data-floor="4">4</button>
+          <button class="btn" data-floor="11">11</button>
+        </div>
+        <div class="row">
+          <button class="btn" data-floor="3">3</button>
+          <button class="btn" data-floor="10">10</button>
+        </div>
+        <div class="row">
+          <button class="btn" data-floor="2">2</button>
+          <button class="btn" data-floor="9">9</button>
+        </div>
+        <div class="row">
+          <button class="btn" data-floor="1">1</button>
+          <button class="btn" data-floor="8">8</button>
+        </div>
+        <div class="row">
+          <button class="btn" data-open-door>&lt;&gt;</button>
+          <button class="btn" data-close-door>&gt;&lt;</button>
+        </div>
+      </div><!-- .pad -->
+    </div><!-- .elevator -->
+  </div><!-- .container -->
+
+  <script src="assets/js/elevator.js"></script>
 </body>
 </html>
